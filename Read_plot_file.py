@@ -32,7 +32,8 @@ with open(File) as Read:
                 Value_1[i, k] = float(mas[k])
             i=i+1
 
-print(num_colums)
+print('Число столбцов='+ num_colums)
+print('Число строк='+ num_strings)
 plt.figure()
 
 plt.plot(Value_1[:, 0], Value_1[:, 1], label='FF', linewidth ='3')
