@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from math import sqrt
 from math import log10
 from cmath import phase
+import skrf as rf
 
 #calculate number strings and colums
 #return mas[string, colums]
@@ -22,6 +23,7 @@ def n_string_colums(File, dot = ','):
 
 #read random file from simulation
 #return mas[i,j]
+
 def read_file(File, dot = ',', Text = ''):
     comment = ["#", ";"]
     Size = n_string_colums(File)
@@ -125,6 +127,7 @@ def poly_db(Massive):
         Polinom_db[i, 0] = Massive[i, 0].real
     return Polinom_db
 
+
 #calculate deg Values of polynom
 def poly_deg(Massive):
     Polinom_phase = np.zeros([len(Massive), 2], float)
@@ -141,3 +144,80 @@ def poly_deg(Massive):
     Polinom_phase[i, 0] = Massive[i, 0].real
 
     return Polinom_phase
+
+
+def pole_zero_plot(p, z, color_p='Tab:red', color_z='Tab:blue',
+                   legend_p='poles', legend_z='zeros'):
+    plt.figure()
+    #for i in range(len(p)):
+    # plot poles/zeros
+    plt.scatter(p.real, p.imag, s=150, marker='*', c=color_p, label=legend_p)
+    plt.scatter(z.real, z.imag, s=30, marker='o', c=color_z, label=legend_z )
+    plt.grid(which='both', axis='both')
+    plt.xlabel('Real')
+    plt.ylabel('Imag')
+
+
+#plot pole/zero. Calculate Q/F for design
+def Butterworth_pole_zero(Order, Freq, p, z):
+    Order_half = int(Order)/2
+    print(f'Filter Order N = {Order}')
+    pole_zero_plot(p, z, color_p='Tab:red', color_z='Tab:blue')
+    for i in range(len(p)):
+        # calculate quality factor and normalized F
+        Q = -abs(p[i]) / (2 * p[i].real)
+        F = abs(p[i]) / Freq
+
+        # parameters of blocks
+        if Order % 2 != 0:
+            if i <int(Order_half) :
+                print(f'#-- Block {i + 1} --#')
+                print(f'Pole: {round(p[i] ,4)}')
+                print(f'Second order block Q = {round(Q, 4)}')
+                print(f'Normalized Freq = {round(F, 4)}')
+            elif i == int(Order_half):
+                print(f'#-- Block {i + 1} --#')
+                print(f'Pole: {round(p[i], 4)}')
+                print(f'First order block Q = {round(Q, 4)}')
+                print(f'Normalized Freq = {round(F, 4)}')
+        else:
+            if i < int(Order_half):
+                print(f'#-- Block {i + 1} --#')
+                print(f'Pole: {round(p[i], 4)}')
+                print(f'Second order block Q = {round(Q, 4)}')
+                print(f'Normalized Freq = {round(F, 4)}')
+
+
+def PLOT_s_db_Dir(Directory, label='Test', N_fig = 1, sp = 11):
+    Data = rf.Network(Directory)
+    plt.figure(N_fig)
+    First = int(sp/10)
+    Second = sp - First*10
+    Data.plot_s_db(m=First - 1, n=Second - 1, label=label, linewidth='3')
+    plt.ylabel(f'S{sp}, дБ')
+    plt.xlabel('F, Гц')
+
+
+def PLOT_s_db_Netw(Network, label='Test', N_fig = 1, sp = 11):
+    plt.figure(N_fig)
+    First = int(sp/10)
+    Second = sp - First*10
+    Network.plot_s_db(m=First - 1, n=Second - 1, label=label, linewidth='3')
+    plt.ylabel(f'S{sp}, дБ')
+    plt.xlabel('F, Гц')
+
+#read and create massive from cadence
+def read_pole_zeros_cadence(Directory):
+    Value_1 =read_file(Directory)
+    N_elements = len(Value_1[:, 0])
+    poles = np.zeros(N_elements, complex)
+
+    for i in range(N_elements):
+        sigma_p = -(Value_1[i, 1] / (2 * Value_1[i, 0]))
+        omega_p = np.sqrt(pow(Value_1[i, 1], 2) - pow(sigma_p, 2))
+        if i <N_elements-1 and  Value_1[i, 0] == Value_1[i+1, 0]:
+            c_Pole = complex(sigma_p, -omega_p)
+        else:
+            c_Pole = complex(sigma_p, omega_p)
+        poles[i]=c_Pole
+    return poles

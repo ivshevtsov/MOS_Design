@@ -12,9 +12,7 @@ File_zeros = "Files/SE_OPA_PZ/SE_OP_zeros.csv"
 
 
 Polinom = poly_from_file(File_poles, File_zeros, 1, 1e10, 1000)
-
 Polinom_db = poly_db(Polinom)
-
 Polinom_deg = poly_deg(Polinom)
 
 plot_two_y(Polinom_db[:, 0], First=Polinom_db[:,1], Second=Polinom_deg[:, 1],

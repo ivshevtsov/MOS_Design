@@ -1,41 +1,28 @@
 import matplotlib.pyplot as plt
+from Functions import read_file
 import numpy as np
 plt.rcParams["font.family"] = "Century Gothic"
 plt.rcParams["font.size"] = "14"
 
-comment = ["#", ";"]
-dot = ","
-File = "Files/S21_Attenuator_10db_ff_ss_tt.vcsv"
 
-num_colums = 0
-num_strings =  0
-#Size of massive
-with open(File) as Read:
-    for line in Read:
-        string  = line
-        if  string[0] != comment[0] and string[0] != comment[1] and string[0].isalpha() != True:
-            num_colums = len(line.split(","))
-            mas = line.split(dot)
-            num_strings = num_strings+1
+File = "Files/FD_OPA_PZ/FD_Closed_loop.csv"
+Title = 'Closed loop gain (R1=1 кОм)'
+Value_1=read_file(File, dot = ',', Text = '')
+Resistors = ['1 кОм', '3 кОм', '30 кОм', '300 кОм', '3 МОм', '10 МОм']
+#Gains = ['-9', '-7', '-5', '-3', '-1']
 
-mas = []
-Value_1 = np.zeros((num_strings, num_colums))
-i=0
+plt.title(Title)
+for i in range(len(Value_1[0])-1):
+    plt.plot(Value_1[:, 0], Value_1[:, i+1], label=f'R2={Resistors[i]}', linewidth='3')
+plt.xlabel('F, Гц')
+plt.xscale('log')
+plt.ylabel('A, дБ')
+plt.grid()
+plt.legend()
+plt.show()
 
-#Write massive
-with open(File) as Read:
-    for line in Read:
-        string  = line
-        if  string[0] != comment[0] and string[0] != comment[1] and string[0].isalpha() != True:
-            mas = line.split(dot)
-            for k in range(num_colums):
-                Value_1[i, k] = float(mas[k])
-            i=i+1
 
-print('Число столбцов='+ num_colums)
-print('Число строк='+ num_strings)
-plt.figure()
-
+'''
 plt.plot(Value_1[:, 0], Value_1[:, 1], label='FF', linewidth ='3')
 plt.plot(Value_1[:, 0], Value_1[:, 3], label='SS', linewidth ='3')
 plt.plot(Value_1[:, 0], Value_1[:, 5], label='TT', linewidth ='3')
@@ -44,3 +31,6 @@ plt.ylabel('S21, dB')
 plt.grid()
 plt.legend()
 plt.show()
+'''
+
+
