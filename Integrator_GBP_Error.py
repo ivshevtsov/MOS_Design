@@ -20,7 +20,7 @@ Error_f = ((INT_UNITY/epsilon-INT_UNITY)/INT_UNITY)*100
 
 #error Freq
 plt.figure()
-plt.plot(GBP/INT_UNITY, Error_f)
+plt.plot(GBP/INT_UNITY, Error_f, linewidth=3)
 plt.xscale('log')
 plt.xlabel(r'$\frac{GBP}{fo}$')
 plt.ylabel('Error F, %')
@@ -29,7 +29,7 @@ plt.subplots_adjust(bottom=0.16)
 
 #error gain
 plt.figure()
-plt.plot(GBP/INT_UNITY, epsilon_db)
+plt.plot(GBP/INT_UNITY, epsilon_db, linewidth=3)
 plt.xscale('log')
 plt.xlabel(r'$\frac{GBP}{fo}$')
 plt.ylabel('Error дБ')

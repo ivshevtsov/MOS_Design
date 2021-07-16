@@ -220,4 +220,5 @@ def read_pole_zeros_cadence(Directory):
         else:
             c_Pole = complex(sigma_p, omega_p)
         poles[i]=c_Pole
+        print(poles[i])
     return poles
