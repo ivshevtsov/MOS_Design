@@ -7,14 +7,14 @@ plt.rcParams["font.family"] = "Century Gothic"
 plt.rcParams["font.size"] = "14"
 
 #Initial conditions
-x_lim = [-3e6, 0]
+x_lim = [-2e6, 0]
 
 #read files
-Directory_1 = 'Files/Filters/Poles_First_LPF.csv'
-Directory_2 = 'Files/Filters/Poles_First_PPF.csv'
+Directory_1 = 'Files/Filters/PZ_PPF_18M_IDEAL.csv'
+Directory_2 = 'Files/Filters/PZ_PPF_18M_REAL.csv'
 Directory_3 = 'Files/Filters/HF_First_PPF.csv'
-label_1 = 'LPF poles'
-label_2 = 'PPF poles'
+label_1 = 'GBP 1T'
+label_2 = 'GBP 200M'
 poles_1 = read_pole_zeros_cadence(Directory_1)
 poles_2 = read_pole_zeros_cadence(Directory_2)
 HF = read_file(Directory_3)
