@@ -17,6 +17,7 @@ Polinom_deg = poly_deg(Polinom)
 
 plot_two_y(Polinom_db[:, 0], First=Polinom_db[:,1], Second=Polinom_deg[:, 1],
            label_first='H(f), дБ', label_second='Фаза, град.', xlabel='F, Гц')
+
 plt.show()
 
 
