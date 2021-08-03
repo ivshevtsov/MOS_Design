@@ -75,5 +75,19 @@ plt.ylim([0, 1e6])
 plt.grid()
 plt.ylabel('Error F, Гц')
 plt.xlabel('IN F,Гц')
+
+plt.figure()
+plt.plot(Val_CAP, Frequency_real, linewidth='3', label='Calculated')
+plt.plot(Val_CAP, Frequency_ideal, linewidth='3',label='Ideal', c='Tab:green' )
+plt.xlim([np.max(Val_CAP), np.min(Val_CAP)])
+plt.ylabel('OUT F, Гц')
+plt.xlabel('C,Ф')
+plt.legend()
+plt.grid()
+
+
+
+
+
 plt.show()
 
