@@ -85,9 +85,5 @@ plt.xlabel('C,Ф')
 plt.legend()
 plt.grid()
 
-
-
-
-
 plt.show()
 

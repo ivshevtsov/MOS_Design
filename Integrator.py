@@ -9,15 +9,11 @@ R=20e3
 C=4e-12
 Gain_OPA_db = 70
 Gain = 10**(Gain_OPA_db/20)
-r_out=1000
-
-
+r_out=500
 
 s= control.tf('s')
-p1=1e5
-p2=1e9
 pi=3.1415
-
+p1=1e5*2*pi
 
 A = Gain/((s/p1+1))
 H_ideal =1/(s*R*C)
@@ -35,13 +31,10 @@ print('Poles = ', Poles)
 print('Zeros = ', Zeros)
 print(H)
 
-
 freq = np.logspace(1, 11, 5000)
 
 
-
 plt.figure()
-
 control.bode_plot(A,
              label='Open Loop',
              dB=True,
@@ -49,7 +42,7 @@ control.bode_plot(A,
              linewidth='3',
              c='Tab:red',
              grid=True,
-             wrap_phase=False,
+             wrap_phase=True,
              omega = freq,
              plot=False     )
 
@@ -76,7 +69,7 @@ control.bode(Error_Term,
              plot=False )
 
 control.bode(H,
-             label='Result Function',
+             label='R=0 Ом',
              dB=True,
              Hz=True,
              linewidth='3',
@@ -87,7 +80,7 @@ control.bode(H,
              plot=True )
 
 control.bode(H_res,
-             label='Result Function with R',
+             label=f'R={r_out} Ом',
              dB=True,
              Hz=True,
              linewidth='3',
@@ -97,6 +90,5 @@ control.bode(H_res,
              omega = freq,
              plot=True )
 
-#plt.legend()
-
+plt.legend()
 plt.show()
