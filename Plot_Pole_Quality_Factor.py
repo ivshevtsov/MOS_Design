@@ -6,10 +6,7 @@ plt.rcParams["figure.figsize"]=[4,8]
 
 
 pi=3.1415
-
-
 Q=[0.5,  0.707, 1, 10]
-
 
 for i in Q:
     angle = math.acos(1/(2*i))*180/pi
