@@ -6,7 +6,7 @@ import sympy
 plt.rcParams["font.family"] = "Century Gothic"
 plt.rcParams["font.size"] = "14"
 plt.rcParams['lines.linewidth'] = 3
-plt.rcParams["figure.figsize"]=[4,4]
+#plt.rcParams["figure.figsize"]=[4,4]
 
 Q=0.7
 Q_L=[0.5, 0.707, 1, 3]
@@ -41,8 +41,8 @@ print('Zeros = ', Zeros)
 
 #Step responce
 plt.figure()
-plt.grid()
 plt.plot(ts, xs)
+plt.grid()
 
 #plot PZ
 plt.figure()
@@ -64,6 +64,8 @@ for i in Q_L:
     ts, xs = control.step_response(TF, T=T)
     plt.plot(ts, xs, label=rf'Q={i}, $\zeta$={round(1/(2*i),3)}')
 plt.grid()
+plt.xlabel('t,с')
+plt.ylabel('h(t)')
 plt.legend()
 
 #multiple H(f)
@@ -76,6 +78,8 @@ for i in Q_L:
 
 plt.xscale("log")
 plt.grid(which='both', axis='both')
+plt.ylabel(r'H($\omega$), дБ')
+plt.xlabel(r'$\omega$,рад/с')
 plt.legend()
 
 
