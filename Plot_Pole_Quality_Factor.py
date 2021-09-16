@@ -1,3 +1,4 @@
+import control
 import matplotlib.pyplot as plt
 import math
 plt.rcParams["font.family"] = "Century Gothic"
