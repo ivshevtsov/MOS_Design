@@ -11,7 +11,7 @@ plt.rcParams["font.size"] = "14"
 
 #parameters of filter
 Order = 3
-Freq = 2e6
+Freq = 5e6
 start_f = 1e3
 stop_f =  1e8
 N_points = 100

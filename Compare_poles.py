@@ -40,6 +40,5 @@ plt.legend()
 plt.grid(which='both', axis='both')
 
 
-
 plt.show()
 

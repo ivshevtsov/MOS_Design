@@ -157,6 +157,14 @@ def pole_zero_plot(p, z, color_p='Tab:red', color_z='Tab:blue',
     plt.xlabel('Real')
     plt.ylabel('Imag')
 
+def pole_plot(p, color_p='Tab:red', legend_p='poles'):
+    plt.scatter(p.real, p.imag, s=150, marker='*', c=color_p, label=legend_p)
+
+
+
+
+
+
 
 #plot pole/zero. Calculate Q/F for design
 def Butterworth_pole_zero(Order, Freq, p, z):

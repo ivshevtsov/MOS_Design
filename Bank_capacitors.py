@@ -11,10 +11,10 @@ Simulation_F=read_file(File, dot = ',', Text = '')
 #----------------
 
 #---Inition Conditions---
-R = 10e3
+R = 20e3
 C = 4e-12
 Overlap_C = 60
-N_Bit = 4
+N_Bit = 5
 Unity_Cap = C*(1+Overlap_C/100)/2**N_Bit
 #------------------------
 
@@ -58,7 +58,7 @@ for i in range(len(Val_CAP)):
 
 plt.figure()
 plt.plot(F_CAP, Frequency_real, linewidth='3', label='Calculated')
-plt.plot(Simulation_F[:, 0], Simulation_F[:, 1], linewidth='3', label='Simulated')
+#plt.plot(Simulation_F[:, 0], Simulation_F[:, 1], linewidth='3', label='Simulated')
 plt.plot(F_CAP, Frequency_ideal, linewidth='3',label='Ideal' )
 plt.xlim([np.min(F_CAP), np.max(F_CAP)/6])
 plt.ylim([np.min(F_CAP), np.max(F_CAP)/6])
@@ -69,10 +69,11 @@ plt.grid()
 
 plt.figure()
 plt.plot(F_CAP, Frequency_real-Frequency_ideal, linewidth='3',label='Calculated' )
-plt.plot(Simulation_F[:, 2], Simulation_F[:, 3], linewidth=3, label='Simulated')
+#plt.plot(Simulation_F[:, 0], Simulation_F[:, 2], linewidth=3, label='Simulated')
 plt.xlim([np.min(F_CAP), np.max(F_CAP)/6])
 plt.ylim([0, 1e6])
 plt.grid()
+plt.legend()
 plt.ylabel('Error F, Гц')
 plt.xlabel('IN F,Гц')
 
