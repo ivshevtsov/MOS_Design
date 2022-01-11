@@ -16,7 +16,7 @@ stop_f =  1e8
 N_points = 100
 
 #initial parameters for Cap/Res
-R_2_4 = 20e3
+R_2_4 = 10e3
 pi = 3.1415
 H = 1
 

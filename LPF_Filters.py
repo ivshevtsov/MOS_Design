@@ -9,7 +9,7 @@ plt.rcParams["font.size"] = "14"
 
 #parameters of filter
 Order=3
-Freq = 10
+Freq = 1
 
 #Plot different H(f)
 plt.figure()

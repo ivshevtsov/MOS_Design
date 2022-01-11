@@ -29,7 +29,7 @@ print('Poles = ', Poles)
 print('Zeros = ', Zeros)
 
 Home = 'Files/Filters/PPF_HF_model'
-with open(f'{Home}/GLO.csv', 'w') as File:
+with open(f'{Home}/GLO.txt', 'w') as File:
     File.write('freq(Hz), HF(dB)\n')
     for i in range(len(mag)):
         str = '{freq:.4e}, {mag:15.10f}\n'.format(freq=w[i], mag =20*np.log10(mag[i]))

@@ -11,10 +11,10 @@ Simulation_F=read_file(File, dot = ',', Text = '')
 #----------------
 
 #---Inition Conditions---
-R = 20e3
-C = 4e-12
-Overlap_C = 60
-N_Bit = 5
+R = 10e3
+C = 6.36e-12
+Overlap_C = 0
+N_Bit = 4
 Unity_Cap = C*(1+Overlap_C/100)/2**N_Bit
 #------------------------
 

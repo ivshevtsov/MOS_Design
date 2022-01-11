@@ -8,14 +8,14 @@ plt.rcParams['lines.linewidth'] = 3
 
 
 F_LPF = 2.5e6
-F_PPF = 13.29e6
+F_PPF = 0e6
 Fmin = -50e6
 Fmax =  50e6
 ##-----------------------------------##
 ##-----------------------------------##
 s= control.tf('s')
 omega = np.linspace( Fmin, Fmax, 1000)
-Q=0.707
+Q=8
 TF = (F_LPF**2) / ((s-1j*F_PPF)**2 + (s-1j*F_PPF)*(F_LPF / Q) + F_LPF**2)
 
 mag, ph, w = control.bode(TF, plot=False, color='Tab:red', Hz = True, omega=omega)
@@ -26,8 +26,16 @@ print('G = ', TF)
 print('Poles = ', Poles)
 print('Zeros = ', Zeros)
 
+#T = np.linspace(0, 1e-6, 100)
+Time, Impulse = control.impulse_response(TF)
+plt.figure()
+plt.plot(Time, Impulse)
+
+
+
+
 Home = 'Files/Filters/PPF_HF_model'
-with open(f'{Home}/GPS.csv', 'w') as File:
+with open(f'{Home}/GPS.txt', 'w') as File:
     File.write('freq(Hz), HF(dB)\n')
     for i in range(len(mag)):
         str = '{freq:.4e}, {mag:15.10f}\n'.format(freq=w[i], mag =20*np.log10(mag[i]))

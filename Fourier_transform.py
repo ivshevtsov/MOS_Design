@@ -18,8 +18,6 @@ SI_t = np.cos((2*np.pi)*(freq+5000)*t)
 IM_IF_t = IM_t*LO_t
 SI_IF_t = SI_t*LO_t
 
-
-
 LO_f = fft(LO_t)/N
 IM_f = fft(IM_t)/N
 SI_f = fft(SI_t)/N
@@ -56,6 +54,5 @@ ax.set_ylim(min(SI_IF_f.real)-0.1, max(SI_IF_f.real)+0.1)
 ax.set_xlabel('F, Гц')
 ax.set_ylabel('Re')
 ax.set_zlabel('Im')
-
 
 plt.show()

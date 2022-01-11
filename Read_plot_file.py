@@ -5,8 +5,8 @@ plt.rcParams["font.family"] = "Century Gothic"
 plt.rcParams["font.size"] = "14"
 
 
-File = "Files/Filters/RC_After_Mix/RC_LPF_After_mix.csv"
-Title = 'MISMATCH'
+File = "Files/PPF/filters_tt/GPS.csv"
+Title = 'GPS'
 Value_1=read_file(File, dot = ',', Text = '')
 #Resistors = ['1 кОм', '3 кОм', '30 кОм', '300 кОм', '3 МОм', '10 МОм']
 #Gains = ['-9', '-7', '-5', '-3', '-1']
@@ -27,24 +27,25 @@ plt.show()
 '''
 
 plt.figure()
-plt.plot(Value_1[:, 0], Value_1[:, 1]-Value_1[:, 2], label='F=50МГц', linewidth ='3')
-#plt.plot(Value_1[:, 0], Value_1[:, 3], label='Uncompensated', linewidth ='3')
-#plt.plot(Value_1[:, 0], Value_1[:, 3],linestyle='dashed',  label='Compensated', linewidth ='3')
-plt.xlabel('N')
-plt.ylabel('Error mag, дБ')
+plt.title(Title)
+plt.plot(Value_1[:, 0], Value_1[:, 1], label='Without DCOC', linewidth ='3')
+#plt.plot(Value_1[:, 0], Value_1[:, 3], label='With DCOC', linewidth ='3')
+
+plt.xlabel('f, Гц')
+plt.ylabel('H(f), дБ')
 #plt.xscale('log')
 plt.grid()
-plt.legend()
+#plt.legend()
 
 plt.figure()
-plt.plot(Value_1[:, 0], Value_1[:, 3]-Value_1[:, 4], label='F=50МГц', linewidth ='3')
-#plt.plot(Value_1[:, 0], Value_1[:, 3], label='Uncompensated', linewidth ='3')
-#plt.plot(Value_1[:, 0], Value_1[:, 3],linestyle='dashed',  label='Compensated', linewidth ='3')
-plt.xlabel('N')
-plt.ylabel('Error phase, град.')
+plt.title(Title)
+plt.plot(Value_1[:, 2], Value_1[:, 3]*1e9, label='Without DCOC', linewidth ='3')
+#plt.plot(Value_1[:, 0], Value_1[:, 4]+180*2, label='With DCOC', linewidth ='3')
+plt.xlabel('f, Гц')
+plt.ylabel('GD, нc')
 #plt.xscale('log')
 plt.grid()
-plt.legend()
+#plt.legend()
 
 
 
