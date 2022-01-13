@@ -36,7 +36,7 @@ def Fitting_error(File_Model, File_EM_sim):
 
 
 File_Model = f'Files/Y_Spiral/IND_TSMC.s2p'
-File_EM_sim =   f'Files/Y_Spiral/IND_EM.s2p'
+File_EM_sim =   f'Files/Y_Spiral/IND_EM_1.s2p'
 
 Fitting_error(File_Model = File_Model, File_EM_sim = File_EM_sim)
 
@@ -44,8 +44,8 @@ Model = rf.Network(File_Model)
 EM_sim =rf.Network(File_EM_sim)
 
 plt.figure()
-Model.plot_y_re(m=2-1, n=1-1, label=f'TSMC Model', linewidth='3')
-EM_sim.plot_y_re(m=2-1, n=1-1, label=f'Simulation', linewidth='3')
+Model.plot_s_db(m=2-1, n=1-1, label=f'TSMC Model', linewidth='3')
+EM_sim.plot_s_db(m=2-1, n=1-1, label=f'Simulation', linewidth='3')
 plt.grid()
 plt.show()
 
