@@ -11,7 +11,7 @@ x_Circle = np.linspace(0, 1, 100)
 y_Circle = (1-x_Circle**2)**0.5
 
 
-N = 1000
+N = 100000
 x_Rand = []
 y_Rand = []
 x_Rand_Circle = []
