@@ -84,13 +84,13 @@ plt.rcParams["font.size"] = "14"
 
 #input cascaded noise figure
 
-NF_total=1.58
+NF_total=1.56
 
 #---------------------------
 
 Band_RF=50e6
-Band_GPS = 5.02e6
-Band_GLO = 10.86e6
+Band_GPS = 4.8e6
+Band_GLO = 9.5e6
 ADC_FS = -8-NF_total
 k=1.38e-23
 T=290
@@ -104,16 +104,16 @@ SAW_G=-2
 SAW_NF=2
 SAW_P1db = 10
 ##--------------##
-LNA_1_G=19.3
-LNA_1_NF=1.88
+LNA_1_G=20
+LNA_1_NF=1.8
 LNA_1_P1db =-7.8
 ##--------------##
 MIX_G=22
 MIX_NF = 17.8
-MIX_P1db = -4.6
+MIX_P1db = -11
 ##--------------##
-PPF_G = 19.95
-PPF_NF = 40.6
+PPF_G = 18
+PPF_NF = 41.62
 PPF_P1db = -17
 ##--------------##
 
@@ -155,28 +155,28 @@ else:
     print(f'VGA GLO Gain = {VGA_GLO_G}')
 ##--------------##
 ##----Receiver Gain-----##
-Gain_dB_GPS = [LNA_0_G, SAW_G, LNA_1_G, MIX_G, PPF_G, VGA_GPS_G]
-Gain_dB_GLO = [LNA_0_G, SAW_G, LNA_1_G, MIX_G, PPF_G, VGA_GLO_G]
+Gain_dB_GPS = [LNA_1_G, MIX_G, PPF_G, VGA_GPS_G]
+Gain_dB_GLO = [LNA_1_G, MIX_G, PPF_G, VGA_GLO_G]
 
 ##----Receiver Noise-----##
-NF_dB_GPS = [LNA_0_NF, SAW_NF, LNA_1_NF, MIX_NF, PPF_NF, VGA_GPS_NF]
-NF_dB_GLO = [LNA_0_NF, SAW_NF, LNA_1_NF, MIX_NF, PPF_NF, VGA_GLO_NF]
+NF_dB_GPS = [LNA_1_NF, MIX_NF, PPF_NF, VGA_GPS_NF]
+NF_dB_GLO = [LNA_1_NF, MIX_NF, PPF_NF, VGA_GLO_NF]
 
 ##----Receiver P1dB-----##
-P1dB_GPS = [LNA_0_P1db, SAW_P1db, LNA_1_P1db, MIX_P1db, PPF_P1db, VGA_GPS_P1db]
-P1dB_GLO = [LNA_0_P1db, SAW_P1db, LNA_1_P1db, MIX_P1db, PPF_P1db, VGA_GLO_P1db]
+P1dB_GPS = [LNA_1_P1db, MIX_P1db, PPF_P1db, VGA_GPS_P1db]
+P1dB_GLO = [LNA_1_P1db, MIX_P1db, PPF_P1db, VGA_GLO_P1db]
 
 ##----Receiver Bands-----##
-Band_GPS_BLOCKS = [Band_RF, Band_RF, Band_RF, Band_RF, Band_GPS, Band_GPS]
-Band_GLO_BLOCKS = [Band_RF, Band_RF, Band_RF, Band_RF, Band_GLO, Band_GLO]
+Band_GPS_BLOCKS = [Band_RF, Band_RF, Band_GPS, Band_GPS]
+Band_GLO_BLOCKS = [Band_RF, Band_RF, Band_GLO, Band_GLO]
 
 ##----Receiver Legend-----##
-Legend = ['МШУ', 'SAW', 'МШУ', 'Смеситель', 'PPF', 'VGA']
+Legend = ['МШУ', 'Смеситель', 'PPF', 'VGA']
 
 ###Results###
 #Select system for calculation
 # 1-GPS 2-GLO
-GPS=1
+GPS=2
 
 if GPS==1:
     Gain_dB= Gain_dB_GPS
@@ -199,7 +199,7 @@ Plot_with_dots(x_2, y_2, Legend=Legend, XLabel='N', YLabel='Gain, дБ', N_Fig=2
 x_3, y_3 = Cascaded_P1dB(Gain_dB, P1dB)
 Plot_with_dots(x_3, y_3, Legend=Legend, XLabel='N', YLabel='P1dB(IN), дБм', N_Fig=3)
 
-Sens=Sensetivity(Band=Band_BLOCKS[-1], NF=y_1[-1], SNR_MIN=-44, IRR=40, PN=-80, SNR_ADC=0.7)
+Sens=Sensetivity(Band=Band_BLOCKS[-1], NF=y_1[-1], SNR_MIN=-44, IRR=30, PN=-80, SNR_ADC=0.7)
 SIG, Noise, SNR = Cascaded_signals(Band_BLOCKS,Gain_dB,NF_dB, Sens)
 
 
@@ -230,7 +230,7 @@ for k in range(len(x_1)+2):
         row[5].text = str(round(NF_dB[k - 2],2))
         row[6].text = str(round(Gain_dB[k - 2], 2))
 
-doc.save('Files/Budget/Test.docx')
+doc.save('Files/Budget/Test_chip.docx')
 
 
 plt.show()
