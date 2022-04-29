@@ -84,37 +84,38 @@ plt.rcParams["font.size"] = "14"
 
 #input cascaded noise figure
 
-NF_total=1.58
+NF_total=1.7
 
 #---------------------------
 
 Band_RF=50e6
-Band_GPS = 5.02e6
-Band_GLO = 10.86e6
+#Band_GPS = 4.66e6
+Band_GPS = 25e6
+Band_GLO = 9.87e6
 ADC_FS = -8-NF_total
 k=1.38e-23
 T=290
 
 ##--------------##
-LNA_0_G =25
-LNA_0_NF=1.5
+LNA_0_G =18.6
+LNA_0_NF=1.1
 LNA_0_P1db =-20
 ##--------------##
 SAW_G=-2
 SAW_NF=2
 SAW_P1db = 10
 ##--------------##
-LNA_1_G=19.3
-LNA_1_NF=1.88
+LNA_1_G=19.41
+LNA_1_NF=1.83
 LNA_1_P1db =-7.8
 ##--------------##
 MIX_G=22
 MIX_NF = 17.8
 MIX_P1db = -4.6
 ##--------------##
-PPF_G = 19.95
-PPF_NF = 40.6
-PPF_P1db = -17
+PPF_G = 9.34
+PPF_NF = 48.5
+PPF_P1db = -17.49
 ##--------------##
 
 Max_Gain_VGA = 42.5
@@ -129,6 +130,9 @@ Signal_GLO = 10*np.log10(k*T*1000)+10*np.log10(Band_GLO)
 ##------------Require gain---------##
 Gain_GPS = ADC_FS-Signal_GPS
 Gain_GLO = ADC_FS-Signal_GLO
+
+print(f'Signal GPS = {Signal_GPS}')
+print(f'Signal GLO = {Signal_GLO}')
 
 print(f'Gain GPS = {Gain_GPS}')
 print(f'Gain GLO = {Gain_GLO}')
@@ -199,7 +203,7 @@ Plot_with_dots(x_2, y_2, Legend=Legend, XLabel='N', YLabel='Gain, дБ', N_Fig=2
 x_3, y_3 = Cascaded_P1dB(Gain_dB, P1dB)
 Plot_with_dots(x_3, y_3, Legend=Legend, XLabel='N', YLabel='P1dB(IN), дБм', N_Fig=3)
 
-Sens=Sensetivity(Band=Band_BLOCKS[-1], NF=y_1[-1], SNR_MIN=-44, IRR=40, PN=-80, SNR_ADC=0.7)
+Sens=Sensetivity(Band=Band_BLOCKS[-1], NF=y_1[-1], SNR_MIN=-44, IRR=300, PN=-800, SNR_ADC=0.007)
 SIG, Noise, SNR = Cascaded_signals(Band_BLOCKS,Gain_dB,NF_dB, Sens)
 
 
