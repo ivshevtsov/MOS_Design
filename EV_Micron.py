@@ -18,16 +18,30 @@ def create_s2p_files():
     S2P_BUF.write_touchstone(filename=f'BUF.s2p', dir=f'{Home}/s2p_sim')
     S2P_LPF.write_touchstone(filename=f'LPF.s2p', dir=f'{Home}/s2p_sim')
 #create_s2p_files()
+#Calculate Bandwidth
+def Band(LPF, BUF, label):
+    HF = LPF.s_db[:,1,0]-BUF.s_db[:,1,0]
+    Gain = max(HF)
+    i=0
+    for k in HF:
+        if k>=Gain-3:
+            i=i+1
+        else:
+            Band = LPF.f[i]
+    print(label)
+    print(f'Gain={round(Gain,3)} дБ')
+    print(f'Band={round(Band/1e6,3)} МГц')
+    print('#----------#')
 
 
 Home = f'Files/EV_Micron'
-list_dir = ['sim', 'meas']
+list_dir = ['sim', 'meas_1', 'meas_2']
 
 
 for i in list_dir:
     LPF = rf.Network(f'{Home}/s2p_{i}/LPF.s2p')
     BUF = rf.Network(f'{Home}/s2p_{i}/BUF.s2p')
-
+    Band(LPF, BUF, i)
     #Plot results
 
     plt.figure(1)
@@ -48,7 +62,6 @@ for i in list_dir:
     plt.ylabel('GD, нс')
     plt.legend()
     plt.grid(2)
-
 
 
 plt.show()

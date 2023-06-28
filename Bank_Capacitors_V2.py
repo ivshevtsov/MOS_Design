@@ -1,10 +1,10 @@
 import numpy as np
-GPS = 3
+GPS = 1
 
 if GPS==1:
     F_LPF=2.5e6
     F_PPF = 13.3e6
-    R=10e3
+    R=20e3
 elif GPS==0:
     F_LPF = 5e6
     F_PPF = 13.3e6

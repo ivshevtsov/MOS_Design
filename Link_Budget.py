@@ -90,14 +90,14 @@ NF_total=1.7
 
 Band_RF=50e6
 #Band_GPS = 4.66e6
-Band_GPS = 25e6
+Band_GPS = 5e6
 Band_GLO = 9.87e6
 ADC_FS = -8-NF_total
 k=1.38e-23
 T=290
 
 ##--------------##
-LNA_0_G =18.6
+LNA_0_G =17
 LNA_0_NF=1.1
 LNA_0_P1db =-20
 ##--------------##
@@ -105,17 +105,17 @@ SAW_G=-2
 SAW_NF=2
 SAW_P1db = 10
 ##--------------##
-LNA_1_G=19.41
-LNA_1_NF=1.83
-LNA_1_P1db =-7.8
+LNA_1_G=14
+LNA_1_NF=3.07
+LNA_1_P1db =-0.5
 ##--------------##
-MIX_G=22
-MIX_NF = 17.8
-MIX_P1db = -4.6
+MIX_G=17.72
+MIX_NF = 17.07
+MIX_P1db = -5.9
 ##--------------##
-PPF_G = 9.34
-PPF_NF = 48.5
-PPF_P1db = -17.49
+PPF_G = 18.22
+PPF_NF = 39.42
+PPF_P1db = -15
 ##--------------##
 
 Max_Gain_VGA = 42.5

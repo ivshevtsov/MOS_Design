@@ -9,9 +9,9 @@ plt.rcParams["figure.figsize"] = (15,4)
 
 
 Type = 'PEX'
-Plot_Signal_1 = 'QVCO(SINE)'
+Plot_Signal_1 = 'PPF(GPS)'
 Home = 'Files/KAPDWA2_TRAN'
-File = 'KAPDWA_FULL_1.779G_9.5-10.9u_interpolate_50p.csv'
+File = 'KAPDWA_FULL_1.8G_9.5-10.5u_interpolate_50p.csv'
 
 
 if Type =='SCH':

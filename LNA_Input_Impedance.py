@@ -156,6 +156,4 @@ plt.ylabel('Z(Re), Ом')
 
 
 
-
-
 plt.show()

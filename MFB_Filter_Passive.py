@@ -8,11 +8,11 @@ plt.rcParams["font.size"] = "14"
 #Calculation MFB filter
 #Initial Data
 Q = 0.707
-Gain_db = 10
+Gain_db = 6
 Gain = 10**(Gain_db/20)
-F_3db = 20e6
+F_3db = 1e6
 
-R1 = 10e3
+R1 = 60e3
 R2 = R1/10
 R3 = Gain*R1
 C1 = Q*(R2*R3 + R1*R3 + R1*R2)/(2*np.pi*F_3db*R1*R2*R3)

@@ -45,11 +45,11 @@ def Calculate_RC(R, fp, Title):
     print('#---------------#')
 
 
-fp = 6e6 #First pole
-k=2 #Frequency scale factor
-Max_F = 40e6 #Max F for plot
+fp = 1.2e9 #First pole
+k=1.5 #Frequency scale factor
+Max_F = 3e9 #Max F for plot
 Value = False #Positive(True)/Negative rejection(False)
-R=5000 #Value for resistors
+R=500 #Value for resistors
 
 freq = np.linspace(-Max_F, Max_F, 500)
 if Value:

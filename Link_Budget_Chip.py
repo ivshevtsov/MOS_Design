@@ -176,7 +176,7 @@ Legend = ['МШУ', 'Смеситель', 'PPF', 'VGA']
 ###Results###
 #Select system for calculation
 # 1-GPS 2-GLO
-GPS=2
+GPS=1
 
 if GPS==1:
     Gain_dB= Gain_dB_GPS

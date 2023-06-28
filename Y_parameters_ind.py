@@ -119,8 +119,6 @@ plt.xlabel('F, Гц')
 plt.ylabel('Ind, H')
 
 
-
-
 '''
 plt.figure()
 plt.plot(Two_ind.f, Two_ind.z_im[:, 2-1, 1-1], label='Z21(Two)', linewidth='3')
