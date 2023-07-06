@@ -36,7 +36,7 @@ def Band(LPF, BUF, label):
 
 Home = f'Files/EV_Micron'
 list_dir = ['sim', 'meas_1', 'meas_2']
-
+#list_dir = ['sim']
 
 for i in list_dir:
     LPF = rf.Network(f'{Home}/s2p_{i}/LPF.s2p')
